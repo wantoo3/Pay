@@ -1,40 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayPal Checkout</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAv2jRHv6hJIGVstP0tPtRJpxSlG81-ncwCFg1w9COWHtRBx3oeJ4sh4XMXHfVBt0u3kpg-XsGlxDiybQ&currency=SGD"></script>
-</head>
-<body>
-
-<div id="paypal-button-container"></div>
-
+<script src="https://www.paypal.com/sdk/js?client-id=BAAv2jRHv6hJIGVstP0tPtRJpxSlG81-ncwCFg1w9COWHtRBx3oeJ4sh4XMXHfVBt0u3kpg-XsGlxDiybQ&components=hosted-buttons&disable-funding=venmo&currency=SGD"></script>
+<div id="paypal-container-S7PDRTK34X334"></div>
 <script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '10.00' // Set the amount you want to charge
-                    },
-                    description: 'Your Checkout Item Name' // Item description
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Show a success message to the buyer
-                alert('Transaction completed by ' + details.payer.name.given_name);
-                // Optionally, you can redirect or update the UI
-            });
-        },
-        onError: function(err) {
-            console.error(err);
-            alert('An error occurred during the transaction. Please try again.');
-        }
-    }).render('#paypal-button-container');
+  paypal.HostedButtons({
+    hostedButtonId: "S7PDRTK34X334",
+  }).render("#paypal-container-S7PDRTK34X334")
 </script>
-
-</body>
-</html>
