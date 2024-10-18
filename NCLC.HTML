@@ -1,7 +1,55 @@
-<script src="https://www.paypal.com/sdk/js?client-id=BAAv2jRHv6hJIGVstP0tPtRJpxSlG81-ncwCFg1w9COWHtRBx3oeJ4sh4XMXHfVBt0u3kpg-XsGlxDiybQ&components=hosted-buttons&disable-funding=venmo&currency=SGD"></script>
-<div id="paypal-container-S7PDRTK34X334"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Checkout</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAv2jRHv6hJIGVstP0tPtRJpxSlG81-ncwCFg1w9COWHtRBx3oeJ4sh4XMXHfVBt0u3kpg-XsGlxDiybQ&components=hosted-buttons&disable-funding=venmo&currency=SGD"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+        #paypal-container-S7PDRTK34X334 {
+            margin: 20px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .loading {
+            display: none;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div id="paypal-container-S7PDRTK34X334">
+    <div class="loading">Processing payment, please wait...</div>
+</div>
+
 <script>
-  paypal.HostedButtons({
-    hostedButtonId: "S7PDRTK34X334",
-  }).render("#paypal-container-S7PDRTK34X334")
+    const loadingIndicator = document.querySelector('.loading');
+
+    paypal.HostedButtons({
+        hostedButtonId: "S7PDRTK34X334",
+    }).render("#paypal-container-S7PDRTK34X334");
+
+    // Show loading indicator when processing payment
+    window.addEventListener('load', function() {
+        document.querySelector('#paypal-container-S7PDRTK34X334').addEventListener('click', function() {
+            loadingIndicator.style.display = 'block';
+        });
+    });
 </script>
+
+</body>
+</html>
