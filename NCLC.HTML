@@ -8,11 +8,20 @@
 <body>
     <h2>Checkout</h2>
     <script src="https://www.paypal.com/sdk/js?client-id=BAAv2jRHv6hJIGVstP0tPtRJpxSlG81-ncwCFg1w9COWHtRBx3oeJ4sh4XMXHfVBt0u3kpg-XsGlxDiybQ&components=hosted-buttons&disable-funding=venmo&currency=SGD"></script>
-<div id="paypal-container-S7PDRTK34X334"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "S7PDRTK34X334",
-  }).render("#paypal-container-S7PDRTK34X334")
-</script>
+    
+    <div id="paypal-container-S7PDRTK34X334"></div>
+    
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "S7PDRTK34X334",
+        onError: function (error) {
+            console.error("Error occurred:", error);
+        },
+        onApprove: function(data, actions) {
+            // Optional: Handle successful approval
+            console.log('Transaction approved!', data);
+        }
+      }).render("#paypal-container-S7PDRTK34X334");
+    </script>
 </body>
 </html>
